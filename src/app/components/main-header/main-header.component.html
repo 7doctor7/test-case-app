@@ -1,0 +1,21 @@
+<ion-header class="main-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button *ngIf="isLogin" class="main-header__menu">
+        <ion-icon name="menu-sharp"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+    
+    <div class="main-header__logo-wrapper">
+      <ion-title>{{ pageTitle }}</ion-title>
+      <img class="main-header__logo" src="assets/icon/header-logo.png" />
+    </div>
+
+    <ion-buttons slot="start" *ngIf="showBackBtn">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" class="main-header--back-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
