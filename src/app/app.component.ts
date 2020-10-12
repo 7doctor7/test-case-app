@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MenuController } from '@ionic/angular';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { UserService, UserData } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   public selectedIndex = 0;
   public appPages = [
     {
@@ -28,24 +28,35 @@ export class AppComponent implements OnInit {
       icon: 'heart',
     },
   ];
+  public userData: UserData;
+  public isLogin = false;
 
-  constructor(private platform: Platform, private splashScreen: SplashScreen, private statusBar: StatusBar) {
-    this.initializeApp();
-  }
+  private user$: Subscription;
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      if (this.platform.is('cordova')) {
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
-      }
-    });
+  constructor(private userService: UserService, private menu: MenuController) {
+    this.userService.checkLogin();
   }
 
   ngOnInit() {
+    this.user$ = this.userService.login$.subscribe(data => {
+      console.log('data => ', data);
+      const { is_login, user } = data;
+      this.userData = { ...user };
+      this.isLogin = is_login;
+    });
+
     const path = window.location.pathname;
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+  }
+
+  public logOut(): void {
+    this.menu.close();
+    this.userService.doLogout();
   }
 }

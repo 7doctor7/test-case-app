@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,14 +15,17 @@ const routes: Routes = [
   },
   {
     path: 'cameras',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/cameras/cameras.module').then(m => m.CamerasPageModule),
   },
   {
     path: 'reporting',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/reporting/reporting.module').then(m => m.ReportingPageModule),
   },
   {
     path: 'settings',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule),
   },
 ];

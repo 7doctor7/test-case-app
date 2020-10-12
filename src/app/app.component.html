@@ -1,10 +1,16 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+  <ion-split-pane contentId="main-content" when="false">
+    <ion-menu [disabled]="!isLogin" contentId="main-content" type="push">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <div *ngIf="userData && userData.email" class="user-view">
+            <ion-list-header>{{ userData.first_name }}&nbsp;{{ userData.last_name }}</ion-list-header>
+            <ion-note>{{ userData.email }}</ion-note>
+
+            <ion-note (click)="logOut()" class="user-view__logout-btn">
+              <span>Logout</span>
+            </ion-note>
+          </div>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item
