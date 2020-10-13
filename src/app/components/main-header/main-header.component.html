@@ -18,7 +18,7 @@
       </ion-button>
     </ion-buttons>
 
-    <select (change)="changeLocale()" [(ngModel)]="selectedLanguage">
+    <select class="main-header__langs" slot="end" (change)="changeLocale($event.target.value)" [(ngModel)]="selectedLanguage">
       <option *ngFor="let language of languages" [value]="language.id">{{ language.title }}</option>
     </select>
   </ion-toolbar>

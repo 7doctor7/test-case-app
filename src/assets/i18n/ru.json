@@ -1,8 +1,20 @@
 {
-	"COMMON": {
-		"required": "Обязательное"
-	},
-	"login": {
-		"login": "Логин"
+  "LANGUAGES": {
+    "EN": "Английский",
+    "RU": "Русский",
+    "TITLE": "Язык"
+  },
+  "COMMON": {
+    "required": "Обязательное"
+  },
+  "LOGIN": {
+    "login": "Логин",
+    "logout": "Выйти",
+    "password": "Пароль"
+  },
+	"PAGE_TITLES": {
+		"cameras": "Камеры",
+		"reporting": "Отчет",
+		"settings": "Настройки"
 	}
 }

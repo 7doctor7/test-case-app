@@ -1,8 +1,20 @@
 {
-	"COMMON": {
-		"required": "Recuired"
+  "LANGUAGES": {
+    "EN": "English",
+    "RU": "Russian",
+    "TITLE": "Language"
+  },
+  "COMMON": {
+    "required": "Recuired"
+  },
+  "LOGIN": {
+    "login": "Login",
+    "logout": "Logout",
+    "password": "Password"
 	},
-	"login": {
-		"login": "Login"
+	"PAGE_TITLES": {
+		"cameras": "Cameras",
+		"reporting": "Reporting",
+		"settings": "Settings"
 	}
 }

@@ -35,12 +35,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private user$: Subscription;
 
-  constructor(private userService: UserService, private menu: MenuController, private translateService: TranslateService) {
-    this.userService.checkLogin();
-  }
+  constructor(private userService: UserService, private menu: MenuController, private translateService: TranslateService) {}
 
   ngOnInit() {
-    // this.translateService.use(environment.defaultLocale);
+    const saved = localStorage.lang;
+    const { defaultLocale, locales } = environment;
+    const lang = saved && saved.length ? saved : defaultLocale;
+
+    this.userService.checkLogin();
+    this.translateService.addLangs([...locales]);
+    this.translateService.use(lang);
 
     this.user$ = this.userService.login$.subscribe(data => {
       const { is_login, user } = data;
