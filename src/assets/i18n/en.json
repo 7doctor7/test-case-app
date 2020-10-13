@@ -1,0 +1,8 @@
+{
+	"COMMON": {
+		"required": "Recuired"
+	},
+	"login": {
+		"login": "Login"
+	}
+}

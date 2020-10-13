@@ -1,3 +1,6 @@
 export const environment = {
-  api_url: 'http://localhost:8100/assets/mock'
+  production: true,
+  api_url: 'http://localhost:8100/assets/mock',
+  locales: ['en', 'ru'],
+  defaultLocale: 'en',
 };

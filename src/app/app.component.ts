@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MenuController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { UserService, UserData } from './services/user/user.service';
+import { environment } from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -33,13 +35,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private user$: Subscription;
 
-  constructor(private userService: UserService, private menu: MenuController) {
+  constructor(private userService: UserService, private menu: MenuController, private translateService: TranslateService) {
     this.userService.checkLogin();
   }
 
   ngOnInit() {
+    // this.translateService.use(environment.defaultLocale);
+
     this.user$ = this.userService.login$.subscribe(data => {
-      console.log('data => ', data);
       const { is_login, user } = data;
       this.userData = { ...user };
       this.isLogin = is_login;

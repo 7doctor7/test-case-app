@@ -14,7 +14,7 @@
           *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)"
         >
           <ion-icon name="information-circle-outline"></ion-icon>
-          <span>Required</span>
+          <span>{{'COMMON.required' | translate}}</span>
         </div>
       </ng-container>
 
