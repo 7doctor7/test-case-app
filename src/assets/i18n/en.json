@@ -11,10 +11,14 @@
     "login": "Login",
     "logout": "Logout",
     "password": "Password"
-	},
-	"PAGE_TITLES": {
-		"cameras": "Cameras",
-		"reporting": "Reporting",
-		"settings": "Settings"
-	}
+  },
+  "PAGE_TITLES": {
+    "cameras": "Cameras",
+    "reporting": "Reporting",
+    "settings": "Settings"
+  },
+  "CAMERAS": {
+    "camera": "Camera",
+    "not_available": "The camera isn't available!"
+  }
 }

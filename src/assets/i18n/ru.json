@@ -16,5 +16,9 @@
 		"cameras": "Камеры",
 		"reporting": "Отчет",
 		"settings": "Настройки"
-	}
+	},
+  "CAMERAS": {
+    "camera": "Камера",
+    "not_available": "Камера недоступна!"
+  }
 }

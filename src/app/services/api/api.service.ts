@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment.prod';
 import { UtilsService } from '../utils/utils.service';
+import { RandomDataService } from '../random-data/random-data.service';
 
 const API_URL = environment.api_url;
 const DEFAULT_ALERT_SUB = 'Server ERROR!';
@@ -37,9 +38,15 @@ export class ApiService {
 
       return this.http.delete<any>(url);
     },
+    RANDOM_GET: (params: { url: string }): Observable<any[]> => this.randomDataService.getRundomCameras(),
   };
 
-  constructor(private http: HttpClient, private utils: UtilsService, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private utils: UtilsService,
+    private router: Router,
+    private randomDataService: RandomDataService
+  ) {}
 
   public apiCall(reqType: string, endpoint: string, payload?: {}): Observable<any> {
     const body = payload ? { ...payload } : null;
