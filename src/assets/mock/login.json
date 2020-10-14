@@ -1,0 +1,9 @@
+{
+  "token": "my_super_best_token",
+  "user": {
+    "id": 89,
+    "email": "super@user.mail",
+    "first_name": "Mickey",
+    "last_name": "Mouse"
+  }
+}

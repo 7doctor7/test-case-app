@@ -1,0 +1,27 @@
+.main-header {
+  &__logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    ion-title {
+      max-width: fit-content;
+    }
+  }
+
+  &__logo {
+    width: 9.1em;
+    max-width: 10em;
+  }
+
+  &--back-icon {
+    font-size: 2.4em;
+  }
+
+  &__langs {
+    margin: 0 1em;
+    width: 8em;
+    height: 2.5em;
+    padding: 0.5em;
+  }
+}

@@ -1,0 +1,42 @@
+.login {
+  &__form {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__submit-btn {
+    text-align: center;
+    margin: 2em auto;
+  }
+
+  &__input {
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    --padding-end: 10px;
+  }
+
+  &__logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 5em 2em;
+  }
+
+  &__logo {
+    width: 15em;
+    max-width: 15em;
+  }
+}
+
+.form-valid-error {
+  color: red;
+  font-size: 14px;
+  margin: 0.5em 0 0.5em 0;
+  display: flex;
+  align-items: center;
+
+  ion-icon {
+    max-width: 25px;
+    max-height: 25px;
+    margin-right: 0.5em;
+  }
+}

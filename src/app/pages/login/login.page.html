@@ -1,0 +1,46 @@
+<app-main-header></app-main-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login__logo-wrapper">
+    <img class="login__logo" src="assets/icon/logo.png" />
+  </div>
+
+  <div class="login__form">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ng-container>
+        <ion-input class="login__input" formControlName="email" type="text" [placeholder]="'LOGIN.login' | translate"></ion-input>
+      </ng-container>
+      <ng-container>
+        <div
+          class="form-valid-error"
+          *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+        >
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{'COMMON.required' | translate}}</span>
+        </div>
+      </ng-container>
+
+      <ng-container>
+        <ion-input
+          class="login__input ion-margin-top"
+          formControlName="password"
+          type="password"
+          [placeholder]="'LOGIN.password' | translate"
+        ></ion-input>
+      </ng-container>
+      <ng-container>
+        <div
+          class="form-valid-error"
+          *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+        >
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>Required</span>
+        </div>
+      </ng-container>
+
+      <div class="login__submit-btn">
+        <ion-button [disabled]="!loginForm.valid" type="submit"> {{'LOGIN.login' | translate}} </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

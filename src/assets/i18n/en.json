@@ -1,0 +1,24 @@
+{
+  "LANGUAGES": {
+    "EN": "English",
+    "RU": "Russian",
+    "TITLE": "Language"
+  },
+  "COMMON": {
+    "required": "Recuired"
+  },
+  "LOGIN": {
+    "login": "Login",
+    "logout": "Logout",
+    "password": "Password"
+  },
+  "PAGE_TITLES": {
+    "cameras": "Cameras",
+    "reporting": "Reporting",
+    "settings": "Settings"
+  },
+  "CAMERAS": {
+    "camera": "Camera",
+    "not_available": "The camera isn't available!"
+  }
+}

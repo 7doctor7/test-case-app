@@ -1,0 +1,38 @@
+<app-main-header [pageTitle]="pageTitle"></app-main-header>
+
+<ion-content class="cameras">
+  <div #update>
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+  <ng-container *ngIf="(cameras$ | async) as cameras">
+    <ion-row class="ion-justify-content-around">
+      <ion-col size-xl="3" size-md="4" size="12" *ngFor="let camera of cameras">
+        <ion-card class="cameras__card" [class.cameras__unavailable]="!camera.is_available">
+          <img
+            *ngIf="camera.is_available"
+            class="cameras__card-img"
+            [src]="camera.responses[camerasService.cameraRespIndex$ | async].url"
+          />
+          <img
+            *ngIf="!camera.is_available"
+            class="cameras__card-img"
+            [src]="camera.responses[0].url"
+          />
+          <ion-card-content>
+            <ion-title>
+              <p>{{'CAMERAS.camera' | translate}}: {{camera.id}}</p>
+              <p *ngIf="!camera.is_available">
+                <span>{{'CAMERAS.not_available' | translate}}</span>
+              </p>
+            </ion-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-content>

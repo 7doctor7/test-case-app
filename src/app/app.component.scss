@@ -117,3 +117,17 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.user-view {
+  border-bottom: 1px solid #d7d7d7;
+
+  &__logout-btn {
+    display: block;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    padding: 0.5em;
+    max-width: 30%;
+    text-align: center;
+    margin: 0.8em 0.5em 1.5em;
+  }
+}

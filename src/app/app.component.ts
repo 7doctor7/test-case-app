@@ -1,69 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MenuController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { UserService, UserData } from './services/user/user.service';
+import { environment } from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Cameras',
+      url: '/cameras',
+      icon: 'mail',
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Reporting',
+      url: '/reporting',
+      icon: 'paper-plane',
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Settings',
+      url: '/settings',
+      icon: 'heart',
     },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public userData: UserData;
+  public isLogin = false;
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
-  }
+  private user$: Subscription;
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
+  constructor(private userService: UserService, private menu: MenuController, private translateService: TranslateService) {}
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    const saved = localStorage.lang;
+    const { defaultLocale, locales } = environment;
+    const lang = saved && saved.length ? saved : defaultLocale;
+
+    this.userService.checkLogin();
+    this.translateService.addLangs([...locales]);
+    this.translateService.use(lang);
+
+    this.user$ = this.userService.login$.subscribe(data => {
+      const { is_login, user } = data;
+      this.userData = { ...user };
+      this.isLogin = is_login;
+    });
+
+    const path = window.location.pathname;
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+  }
+
+  public logOut(): void {
+    this.menu.close();
+    this.userService.doLogout();
   }
 }
